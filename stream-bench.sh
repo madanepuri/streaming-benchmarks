@@ -30,6 +30,7 @@ APEX_DIR="apache-apex-core-$APEX_VERSION"
 #Get one of the closet apache mirrors
 APACHE_MIRROR=$(curl 'https://www.apache.org/dyn/closer.cgi' |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' |   head -1)
 APACHE_MIRROR=${APACHE_MIRROR%?}
+APACHE_ARCHIVE="https://archive.apache.org/dist/"
 
 ZK_HOST="localhost"
 ZK_PORT="2181"
@@ -165,7 +166,7 @@ run() {
 
     #Fetch Storm
     STORM_FILE="$STORM_DIR.tar.gz"
-    fetch_untar_file "$STORM_FILE" "$APACHE_MIRROR/storm/$STORM_DIR/$STORM_FILE"
+    fetch_untar_file "$STORM_FILE" "$APACHE_ARCHIVE/storm/$STORM_DIR/$STORM_FILE"
 
     #Fetch Flink
     FLINK_FILE="$FLINK_DIR-bin-hadoop27-scala_${SCALA_BIN_VERSION}.tgz"
