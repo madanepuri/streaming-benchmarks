@@ -197,9 +197,10 @@
               t (long (/ t 1000000))]
           (if (> t cur)
             (Thread/sleep (- t cur))
-            (future
-              (if (> cur (+ t 100))
-                (println "Falling behind by:" (- cur t) "ms"))))
+;            (future
+;              (if (> cur (+ t 100))
+;                (println "Falling behind by:" (- cur t) "ms")))
+            )
           (gregor/send p "ad-events" (.getBytes (make-kafka-event-at t with-skew? ads user-ids page-ids)))))
       (gregor/close p)
       )))
